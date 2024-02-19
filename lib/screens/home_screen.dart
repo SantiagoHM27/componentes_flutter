@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:praactica3/theme/app_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,7 +16,8 @@ class HomeScreen extends StatelessWidget {
             const Divider(),
             ListTile(
               title: Text('Entradas',
-                style: Theme.of(context).textTheme.headlineLarge,
+              style: AppTheme.lightTheme.textTheme.headlineLarge,
+                //style: Theme.of(context).textTheme.headlineLarge,
                 ),
               subtitle: Text('Recuperar informacion  de TextField',
               style: Theme.of(context).textTheme.bodySmall,
