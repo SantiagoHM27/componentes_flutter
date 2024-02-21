@@ -1,6 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:praactica3/screens/infinite_list.dart';
+import 'package:praactica3/screens/notifications.dart';
 import 'package:praactica3/theme/app_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:praactica3/screens/inputs.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,6 +33,13 @@ class HomeScreen extends StatelessWidget {
               trailing: const Icon(Icons.arrow_right_outlined,
               color: AppTheme.primaryColor,
               ),
+              onTap: (){
+                final ruta1 = MaterialPageRoute(builder: (context){
+                  return const Inputs();
+                });
+                Navigator.push(context, ruta1);
+
+              },
             ),
             const Divider(),
             ListTile(
@@ -44,6 +56,13 @@ class HomeScreen extends StatelessWidget {
               trailing:  const Icon(Icons.arrow_outward_outlined,
                         color: AppTheme.primaryColor,
               ),
+
+              onTap: (){
+                 final ruta2 = MaterialPageRoute(builder: (context){
+                  return const InfiniteList();
+                });
+                Navigator.push(context, ruta2);
+              }
             ),
             const Divider(),
             ListTile(
@@ -61,6 +80,12 @@ class HomeScreen extends StatelessWidget {
               trailing: const Icon(Icons.arrow_right,
               color: AppTheme.primaryColor,
               ),
+              onTap: (){
+                 final ruta3 = MaterialPageRoute(builder: (context){
+                  return const Notifications();
+                });
+                Navigator.push(context, ruta3);
+              },
             )
           ],
         ),
