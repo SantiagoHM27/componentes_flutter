@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
               color: AppTheme.primaryColor,
               ),
               onTap: (){
-                 final ruta3 = MaterialPageRoute(builder: (context){
+                final ruta3 = MaterialPageRoute(builder: (context){
                   return const Notifications();
                 });
                 Navigator.push(context, ruta3);
