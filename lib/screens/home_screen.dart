@@ -1,6 +1,6 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:praactica3/screens/images_screen.dart';
 import 'package:praactica3/screens/infinite_list.dart';
 import 'package:praactica3/screens/notifications.dart';
 import 'package:praactica3/theme/app_theme.dart';
@@ -67,24 +67,25 @@ class HomeScreen extends StatelessWidget {
             const Divider(),
             ListTile(
               title: Text(
-                'Notificaciones',
+                'Imagenes',
               style: AppTheme.lightTheme.textTheme.headlineLarge,
               ),
               
-              subtitle:  Text('Manejo de notificaciones',
+              subtitle:  Text(
+                'Widget de manipulacion de imagenes',
               style: AppTheme.lightTheme.textTheme.bodySmall,
               ),
-              leading:  const Icon(Icons.notification_important,
+              leading:  const Icon(Icons.image,
               color: AppTheme.primaryColor,
               ),
               trailing: const Icon(Icons.arrow_right,
               color: AppTheme.primaryColor,
               ),
               onTap: (){
-                final ruta3 = MaterialPageRoute(builder: (context){
-                  return const Notifications();
+                final ruta4 = MaterialPageRoute(builder: (context){
+                  return const ImagesScreen();
                 });
-                Navigator.push(context, ruta3);
+                Navigator.push(context, ruta4);
               },
             )
           ],
