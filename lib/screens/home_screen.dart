@@ -65,6 +65,31 @@ class HomeScreen extends StatelessWidget {
               }
             ),
             const Divider(),
+          ListTile(
+            title: Text(
+              'Notificaciones',
+              style: AppTheme.lightTheme.textTheme.headlineLarge,
+            ),
+            subtitle: Text(
+              'Manejo de notificaciones',
+              style: AppTheme.lightTheme.textTheme.bodySmall,
+            ),
+            leading: const Icon(
+              Icons.notification_important,
+              color: AppTheme.primaryColor,
+            ),
+            trailing: const Icon(
+              Icons.arrow_right_outlined,
+              color: AppTheme.primaryColor,
+            ),
+            onTap: () {
+              final ruta3 = MaterialPageRoute(builder: (context) {
+                return const Notifications();
+              });
+              Navigator.push(context, ruta3);
+            },
+          ),
+            const Divider(),
             ListTile(
               title: Text(
                 'Imagenes',

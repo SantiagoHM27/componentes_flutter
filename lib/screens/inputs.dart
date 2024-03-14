@@ -1,6 +1,7 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:praactica3/models/data.dart';
+import 'package:praactica3/screens/data_screens.dart';
 import 'package:praactica3/screens/home_screen.dart';
 import 'package:praactica3/screens/images_screen.dart';
 import 'package:praactica3/screens/infinite_list.dart';
@@ -16,9 +17,10 @@ class Inputs extends StatefulWidget {
 }
 
 class _InputsState extends State<Inputs> {
+  String? nombre;
   bool valueSwitch = false;
   double sliderValue = 0.0;
-  int foodRadio = 0;
+  String? foodRadio;
   bool postreCheck1 = false;
   bool postreCheck2 = false;
   bool postreCheck3 = false;
@@ -47,12 +49,24 @@ class _InputsState extends State<Inputs> {
                   style: AppTheme.lightTheme.textTheme.headlineLarge,
                 ),
                 entradasCheck(),
-                const ElevatedButton(
-                  onPressed: null,
-                  child: Text(
-                    'Guardar',
-                  ),
+                ElevatedButton(
+                    onPressed: () {
+                      Data data =  Data(
+                        nomb: nombre!,
+                        flutter: valueSwitch,
+                        calif:  sliderValue.round(),
+                        food: foodRadio!,
+                        icecream: postreCheck1,
+                        choco: postreCheck2,
+                        cake: postreCheck3
+                      );
+                      MaterialPageRoute ruta = 
+                        MaterialPageRoute(builder: (context) => const DataScreen(datos: data,));
+                      Navigator.push(context, ruta);
+                  },
+                    child:  const Text('Guardar'),
                 ),
+
               ],
             ),
           ),
@@ -74,11 +88,11 @@ class _InputsState extends State<Inputs> {
             icon: Icon(Icons.list),
             label: 'Lista',
             ),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
             icon: Icon(Icons.notification_add),
             label: 'Notificaciones',
             ),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
             icon: Icon(Icons.image),
             label: 'Imágenes',
             ),
@@ -100,10 +114,14 @@ class _InputsState extends State<Inputs> {
       break;
 
       case 2: ruta = MaterialPageRoute(builder: (context)=> const Notifications());
-    break;
+      break;
 
-    case 3: ruta = MaterialPageRoute(builder: (context)=> const ImagesScreen());
-    break;
+      case 3: ruta = MaterialPageRoute(builder: (context)=> const ImagesScreen());
+      break;
+  //No aplicable en navegadores 
+      case 4:
+      SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+      break; 
     }
     
     setState((){
@@ -123,6 +141,9 @@ class _InputsState extends State<Inputs> {
         labelText: 'Escribe tu nombre:',
         labelStyle: AppTheme.lightTheme.textTheme.headlineLarge,
       ),
+      onChanged: (text){
+        nombre = text;
+      },
     );
   }
 
@@ -181,7 +202,7 @@ class _InputsState extends State<Inputs> {
             style: AppTheme.lightTheme.textTheme.bodySmall,
           ),
           leading: Radio(
-            value: 1,
+            value: 'Tacos al pastor',
             groupValue: foodRadio,
             onChanged: (value) {
               setState(() {
@@ -197,7 +218,7 @@ class _InputsState extends State<Inputs> {
             style: AppTheme.lightTheme.textTheme.bodySmall,
           ),
           leading: Radio(
-            value: 2,
+            value: 'Chileatole',
             groupValue: foodRadio,
             onChanged: (value) {
               setState(() {
